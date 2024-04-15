@@ -1,9 +1,12 @@
-import React from 'react'; 
-import { Row, Col, Avatar, Card, Space, Typography, Statistic, Flex } from "antd";
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Avatar, Card, Space, Typography, Statistic, Input } from "antd";
 import Meta from 'antd/es/card/Meta';
 import { BookOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 import Search from 'antd/es/transfer/search';
 import { Header } from 'antd/es/layout/layout';
+import styles from './SearchBar.module.css';
+const fs = require('fs');
+const axios = require('axios');
 
 // import {
 //     Chart as ChartJS,
@@ -29,93 +32,121 @@ import { Header } from 'antd/es/layout/layout';
 //   );
 
 
-function Overview(){
-    const onSearch = (value, _e, info) => console.log(info?.source, value);
+function Overview() {
+    
+    const [data, setData] = useState([]);
+    const [val , setVal] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetch(`https://api.github.com/users/${val}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                setData(data)
+            })
+        
+    }
+
     return <div>
+
         <Header>
-        <Search placeholder="Type UserName" allowClear onSearch={onSearch} style={{width: 200,display: Flex}}/>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Search data..."
+                    className={styles.textbox}
+        
+                    onChange={(e)=>{setVal(e.target.value)}}
+                     />
+                    <button type='submit'>Go</button>
+            </form>
+
+
+            
         </Header>
 
-        <Space direction ="horizontal">
+        <Space direction="horizontal">
             <Row gutter={16}>
-            <Col span={8}>
-                <Card hoverable style={{width: 220,}}>
-                    <Avatar shape="circle" 
-                    size={{
-                        xs: 24,
-                        sm: 32,
-                        md: 40,
-                        lg: 64,
-                        xl: 80,
-                        xxl: 100,
-                    }}
-                    src="https://www.shutterstock.com/image-photo/profile-picture-smiling-millennial-asian-600nw-1836020740.jpg"/>
-                    <Meta title="Name" description="Username"/>
-                    <Typography.Text>Bio</Typography.Text>
-                </Card>
-            </Col>
+                <Col span={8}>
+                    <Card hoverable style={{ width: 220, }}>
+                        <Avatar shape="circle"
+                            size={{
+                                xs: 24,
+                                sm: 32,
+                                md: 40,
+                                lg: 64,
+                                xl: 80,
+                                xxl: 100,
+                            }}
+                            src={data.avatar_url} />
+                        <Meta title={data.name} description="Username" />{data.login}<br></br>
+                        <Typography.Text>Bio</Typography.Text><br></br>{data.bio}
+                    </Card>
+                </Col>
 
-            <Col span={8}>
-            <Card hoverable style={{width: 220,}}>
-                <Avatar icon= {<UsergroupAddOutlined 
-                style={{
-                    color: "green",
-                    backgroundColor:"rgba(0,225,0,0.5)",
-                    fontSize: 24,
-                    borderRadius: 10,
-                    padding: 100
-                }}/>}
-                size={{
-                    xs: 24,
-                    sm: 32,
-                    md: 40,
-                    lg: 64,
-                    xl: 80,
-                    xxl: 100,
-                }}
-                />
-                <Row gutter={16}>
-                    <Col span={12}>
-                        <Statistic title="Followers" value={6} />
-                    </Col>
-                    <Col span={12}>
-                        <Statistic title="Following" value={5} />
-                    </Col>
-                </Row>
-            </Card>
-            </Col>
+                <Col span={8}>
+                    <Card hoverable style={{ width: 220, }}>
+                        <Avatar icon={<UsergroupAddOutlined
+                            style={{
+                                color: "green",
+                                backgroundColor: "rgba(0,225,0,0.5)",
+                                fontSize: 24,
+                                borderRadius: 10,
+                                padding: 100
+                            }} />}
+                            size={{
+                                xs: 24,
+                                sm: 32,
+                                md: 40,
+                                lg: 64,
+                                xl: 80,
+                                xxl: 100,
+                            }}
+                        />
+                        <Row gutter={16}>
+                            <Col span={12}>
+                                <Statistic title="Followers" value={data.followers} />
+                            </Col>
+                            <Col span={12}>
+                                <Statistic title="Following" value={data.following} />
+                            </Col>
+                        </Row>
+                    </Card>
+                </Col>
 
-            <Col span={8}>
-            <Card hoverable style={{width: 220,}}>
-            <Avatar
-            icon= <BookOutlined
-            style={{
-                color:"Blue",
-                backgroundColor: "rgba(0,255,255,0.25)",
-                fontSize: 24,
-                borderRadius: 10,
-                padding: 100
-            }}/>
-                size={{
-                    xs: 24,
-                    sm: 32,
-                    md: 40,
-                    lg: 64,
-                    xl: 80,
-                    xxl: 100,
-                }}/>
-                <Statistic title="Repositories" value={17}/>
-            </Card>
-            </Col>
-        </Row>
+                <Col span={8}>
+                    <Card hoverable style={{ width: 220, }}>
+                        <Avatar
+                            icon=<BookOutlined
+                                style={{
+                                    color: "Blue",
+                                    backgroundColor: "rgba(0,255,255,0.25)",
+                                    fontSize: 24,
+                                    borderRadius: 10,
+                                    padding: 100
+                                }} />
+                            size={{
+                                xs: 24,
+                                sm: 32,
+                                md: 40,
+                                lg: 64,
+                                xl: 80,
+                                xxl: 100,
+                            }} />
+                        <Statistic title="Repositories" value={data.public_repos} />
+                    </Card>
+                </Col>
+            </Row>
         </Space>
 
         {/* <Space>
         <CommitChart/>
         </Space> */}
-        
+
     </div>
 }
+
 
 // function CommitChart(){
 
