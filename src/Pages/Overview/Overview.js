@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Avatar, Card, Space, Typography, Statistic, Input } from "antd";
+import React, { useState } from 'react';
+import { Row, Col, Avatar, Card, Space, Typography, Statistic } from "antd";
 import Meta from 'antd/es/card/Meta';
 import { BookOutlined, UsergroupAddOutlined } from '@ant-design/icons';
-import Search from 'antd/es/transfer/search';
 import { Header } from 'antd/es/layout/layout';
 import styles from './SearchBar.module.css';
-const fs = require('fs');
-const axios = require('axios');
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserData } from '../../../src/feature/githubSlice.js'
+
 
 // import {
 //     Chart as ChartJS,
@@ -34,18 +34,21 @@ const axios = require('axios');
 
 function Overview() {
     
-    const [data, setData] = useState([]);
     const [val , setVal] = useState("");
-
+    //const [data ,setData] = useState([]);
+    const dispatch = useDispatch();
+    const data = useSelector(state => state.userData)
+    
+    //console.log(data);
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch(`https://api.github.com/users/${val}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
-                setData(data)
+                    //console.log(typeof data);
+                    //setData(data)
+                dispatch(setUserData(data))
             })
-        
     }
 
     return <div>
