@@ -1,8 +1,8 @@
 # Github_Progress_Dashboard
 <br><br>
 
-# **REACT.JS  DOCUMENTATION          
-## PROJECT TITLE: GITHUB USER DASHBOARD**                
+# REACT.JS  DOCUMENTATION          
+## PROJECT TITLE: GITHUB USER DASHBOARD               
 <br><br><br><br>
 <br>
 
@@ -87,7 +87,7 @@
 2. (https://api.github.com/users/USERNAME/repos)
 3. (https://api.github.com/repos/palakSingh621/Github_Progress_Dashboard/contributors)
 <br><br><br>
-
+<br>
 
 
 
