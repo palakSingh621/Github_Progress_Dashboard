@@ -23,7 +23,7 @@ import { Typography, Space, Table } from "antd";
 //     Legend
 //   );
 
-function Contributors(){
+function Details(){
     return (<div>
         <Typography.Title level={4}> RepositoryName</Typography.Title>
         <Space>
@@ -93,4 +93,4 @@ function Contributors(){
         ></Table>
     }
 
-export default Contributors;
+export default Details;

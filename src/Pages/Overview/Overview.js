@@ -5,7 +5,7 @@ import { BookOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 import { Header } from 'antd/es/layout/layout';
 import styles from './SearchBar.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserData } from '../../../src/feature/githubSlice.js'
+import { setUserData} from '../../../src/feature/githubSlice.js'
 
 
 // import {
@@ -48,7 +48,16 @@ function Overview() {
                     //console.log(typeof data);
                     //setData(data)
                 dispatch(setUserData(data))
+
             })
+            // fetch(`https://api.github.com/users/${val}/repos`)
+            //         .then(response => response.json())
+            //         .then(responseData => {
+                            
+                            
+                            
+            //             dispatch(setRepoData(responseData))
+            //         })
     }
 
     return <div>

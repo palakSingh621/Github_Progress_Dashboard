@@ -15,28 +15,24 @@ function Repositories(){
     //const [loading, setLoading]=useState(false);
     // const [dataSource, setDataSource]=useState([])
     const data = useSelector(state => state.userData)
-    console.log(data)
-    //const dispatch = useDispatch();
-    // const dataSource = useSelector(state => state.repoData)
-    // useEffect(()=>{
-    //     fetch(`https://api.github.com/users/${data.username}/repos`)
-    //         .then(response => response.json())
-    //         .then(responseData => {
-    //                 //console.log(typeof data);
-    //                 //setData(data)
+    const repoData = useSelector(state => state.repoData)
+    const dispatch = useDispatch();
+        useEffect(()=>{
+            fetch(`https://api.github.com/users/${data.login}/repos`)
+            .then(response => response.json())
+            .then(responseData => {
+                    //console.log(typeof data);
+                    //setData(data)
                     
-    //             dispatch(setRepoData(responseData))
-    //         })
-    // },[data.username])
-
-    
-
+                dispatch(setRepoData(responseData))
+            })
+        },[data.login])
     const dataSource = [ 
-        { key: '1', name: 'Gourav', description :"svdcugcisyeyuhekj", stargazers_count: 1 , forks_count: 4 , Openissue_count:2  }, 
-        { key: '2', name: 'Kartik', description :"svdcugcisyeyuhekj", stargazers_count: 2 , forks_count: 2 , Openissue_count:2  }, 
-        { key: '3', name: 'Madhu', description :"svdcugcisyeyuhekj", stargazers_count: 3 , forks_count: 1 , Openissue_count:2  }, 
-        { key: '4', name: 'Karu', description :"svdcugcisyeyuhekj", stargazers_count: 4 , forks_count: 3 , Openissue_count:2  }, 
-        { key: '5', name: 'Dinesh', description :"svdcugcisyeyuhekj", stargazers_count: 5 , forks_count: 5 , Openissue_count:2  }, 
+        { key: '1', name: `${repoData.name}`, description :`${repoData.description}`, stargazers_count: `${repoData.stargazers_count}` , forks_count: `${repoData.forks_count}` , Openissue_count:`${repoData.Openissue_count}`  }, 
+        // { key: '2', name: 'Kartik', description :"svdcugcisyeyuhekj", stargazers_count: 2 , forks_count: 2 , Openissue_count:2  }, 
+        // { key: '3', name: 'Madhu', description :"svdcugcisyeyuhekj", stargazers_count: 3 , forks_count: 1 , Openissue_count:2  }, 
+        // { key: '4', name: 'Karu', description :"svdcugcisyeyuhekj", stargazers_count: 4 , forks_count: 3 , Openissue_count:2  }, 
+        // { key: '5', name: 'Dinesh', description :"svdcugcisyeyuhekj", stargazers_count: 5 , forks_count: 5 , Openissue_count:2  }, 
     ]; 
 
     return <Space size={20} direction='vertical' 
