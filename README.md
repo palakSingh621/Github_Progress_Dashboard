@@ -1,6 +1,6 @@
 # ReactJS   Documentation   <br>       
 ## PROJECT TITLE: GITHUB USER DASHBOARD               
-<br><br><br><br>
+<br><br><br>
 
 
 ### A)	DEPENDENCIES USED ALONG WITH DESCRIPTION       <br><br>               
