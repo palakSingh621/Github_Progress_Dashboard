@@ -1,6 +1,6 @@
 # Github_Progress_Dashboard           
 <br>
-### A)	DEPENDENCIES USED ALONG WITH DESCRIPTION       <br><br>               
+# A)	DEPENDENCIES USED ALONG WITH DESCRIPTION       <br><br>               
 
 *1.	"@ant-design/icons": "^5.3.6"*
 -	Package providing icons for Ant Design framework primarily used for building web applications with React.js. It provides a comprehensive set of ready-to-use components, styles, and design patterns.
