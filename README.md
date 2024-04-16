@@ -1,6 +1,5 @@
 # Github_Progress_Dashboard           
-<br><br><br>
-
+<br>
 ### A)	DEPENDENCIES USED ALONG WITH DESCRIPTION       <br><br>               
 
 *1.	"@ant-design/icons": "^5.3.6"*
