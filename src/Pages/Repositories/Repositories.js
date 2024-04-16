@@ -1,91 +1,92 @@
-import React, { useState ,useEffect} from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { Rate, Space, Table, Typography } from "antd";
-// import Contributors from '../Contributors/Contibutors';
-// import { Sorter } from "./utils/sorter";
 import { setRepoData } from '../../feature/githubSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import {Sorter} from './utils/sorter';
+import { Outlet,useParams,useNavigate } from "react-router-dom";
 
-
-// import { getRepositories } from '../../API/api';
-// import Detail from './Detail';
-
-function Repositories(){
-    // const history=useHistory();
-    // const navigate=useNavigate();
-    //const [loading, setLoading]=useState(false);
-    // const [dataSource, setDataSource]=useState([])
+function Repositories() {
     const data = useSelector(state => state.userData)
-    const repoData = useSelector(state => state.repoData)
+    console.log(data)
     const dispatch = useDispatch();
-        useEffect(()=>{
-            fetch(`https://api.github.com/users/${data.login}/repos`)
-            .then(response => response.json())
-            .then(responseData => {
-                    //console.log(typeof data);
-                    //setData(data)
-                    
-                dispatch(setRepoData(responseData))
-            })
-        },[data.login])
-    const dataSource = [ 
-        { key: '1', name: `${repoData.name}`, description :`${repoData.description}`, stargazers_count: `${repoData.stargazers_count}` , forks_count: `${repoData.forks_count}` , Openissue_count:`${repoData.Openissue_count}`  }, 
-        // { key: '2', name: 'Kartik', description :"svdcugcisyeyuhekj", stargazers_count: 2 , forks_count: 2 , Openissue_count:2  }, 
-        // { key: '3', name: 'Madhu', description :"svdcugcisyeyuhekj", stargazers_count: 3 , forks_count: 1 , Openissue_count:2  }, 
-        // { key: '4', name: 'Karu', description :"svdcugcisyeyuhekj", stargazers_count: 4 , forks_count: 3 , Openissue_count:2  }, 
-        // { key: '5', name: 'Dinesh', description :"svdcugcisyeyuhekj", stargazers_count: 5 , forks_count: 5 , Openissue_count:2  }, 
-    ]; 
+    const dataSource = useSelector(state => state.repoData)
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(`https://api.github.com/users/${data.login}/repos`)
+            const responseData = await response.json();
+            console.log(responseData)
+            dispatch(setRepoData(responseData))
+        };
+        fetchData();
+    }, [data])
 
-    return <Space size={20} direction='vertical' 
-    style={{ 
-        display: 'block', width: 700, padding: 30 
-    }}>
-        <Typography.Title level={4}>Repositories</Typography.Title>
-        <Table 
-        //loading={loading}
-        columns={[
-            {
-                title:"Name",
-                dataIndex: "name",
-                // onClick: ()=>history.push({
-                //     pathname: '/Repositories',
-                //     RepositoryName:'name'}),
-                sorter: (a, b) => a.name_count - b.name_count,
-            },
-            {
-                title:"Description",
-                dataIndex: "description"
-            },
-            {
-                title:"Star",
-                dataIndex: "stargazers_count",
-                render:(stargazers_count)=>{
-                    return <Rate value={stargazers_count} allowHalf disabled/>
-                },
-                defaultSortOrder: 'descend',
-                sorter: (a, b) => a.stargazers_count - b.stargazers_count,
-            },
-            {
-                title:"Forks",
-                dataIndex: "forks_count",
-                sorter: (a, b) => a.forks_count - b.forks_count,
-            },
-            {
-                title:"Open-issues",
-                dataIndex: "Openissue_count",
-                sorter: (a, b) => a.Openissue_count - b.Openissue_count,
-            },
-            {
-                title:"Details",
-                render: ()=><a>action</a>,
-                //onClick: ()=>history.push({
-                   // pathname: '/Repositories',
-                   // RepositoryName:''}),
+    const [dataForMapping, setDataForMapping] = useState([]);
+
+    useEffect(() => {
+
+          const mappedData = dataSource.map((item,index) => {
+            return {
+              key: index,
+              name: item.name,
+              description: item.description,
+              stargazers_count: item.stargazers_count,
+              forks_count: item.forks_count,
+              open_issues_count: item.open_issues_count,
             }
-        ]}
-         dataSource={dataSource}
-        pagination={{
-            pageSize: 7,
-        }}
+        });
+          setDataForMapping(mappedData);
+    }, [dataSource])
+
+    // const {params} =useParams();
+    let navigate = useNavigate();
+    return <Space size={20} direction='vertical'
+        style={{
+            display: 'block', width: 900, padding: 10
+        }}>
+        <Typography.Title level={4}>Repositories</Typography.Title>
+        <Table
+            columns={[
+                {
+                    title: "Name",
+                    dataIndex: "name",
+                    sorter: {
+                        compare: Sorter.DEFAULT,
+                        multiple: 1
+                      },
+                },
+                {
+                    title: "Description",
+                    dataIndex: "description",
+                },
+                {
+                    title: "Star",
+                    dataIndex: "stargazers_count",
+                    render: (stargazers_count) => {
+                        return <Rate value={stargazers_count} allowHalf disabled />
+                    },
+                    defaultSortOrder: 'descend',
+                    sorter: (a, b) => a.stargazers_count - b.stargazers_count,
+                },
+                {
+                    title: "Forks",
+                    dataIndex: "forks_count",
+                    sorter: (a, b) => a.forks_count - b.forks_count,
+                },
+                {
+                    title: "open_issues",
+                    dataIndex: "open_issues_count",
+                    sorter: (a, b) => a.open_issues_count - b.open_issues_count,
+                },
+                {
+                    title: "Details",
+                    render: () => <a>action</a>,
+                    // onClick: ()=>navigate('/Details'),
+                }
+            ]}
+            dataSource={dataForMapping}
+            pagination={{
+                pageSize: 5,
+            }}
         ></Table>
     </Space>
 }

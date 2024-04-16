@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOutlined, ReadOutlined, UsergroupAddOutlined } from "@ant-design/icons";
+import { BookOutlined, ReadOutlined} from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 
@@ -22,12 +22,6 @@ function SideMenu(){
                 icon:<BookOutlined/>,
                 key:"/Repositories",
             },
-            {
-                label:"Contributors",
-                icon:<UsergroupAddOutlined />,
-                key:"/Contibutors",
-            }
-
         ]}></Menu>
     </div>);
 }
