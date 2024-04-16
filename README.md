@@ -1,7 +1,4 @@
-# Github_Progress_Dashboard
-<br><br>
-
-# REACT.JS  DOCUMENTATION          
+# REACT.JS   DOCUMENTATION          
 ## PROJECT TITLE: GITHUB USER DASHBOARD               
 <br><br><br><br>
 <br>
