@@ -1,13 +1,13 @@
 # Github_Progress_Dashboard
+<br><br>
+
+# **REACT.JS  DOCUMENTATION          
+## PROJECT TITLE: GITHUB USER DASHBOARD**                
+<br><br><br><br>
+<br>
 
 
-#**REACT.JS  DOCUMENTATION          
-##PROJECT TITLE: GITHUB USER DASHBOARD**                
-
-
-
-
-###A)	DEPENDENCIES USED ALONG WITH DESCRIPTION                      
+### A)	DEPENDENCIES USED ALONG WITH DESCRIPTION       <br><br>               
 
 **1.	"@ant-design/icons": "^5.3.6"**
 -	Package providing icons for Ant Design framework primarily used for building web applications with React.js. It provides a comprehensive set of ready-to-use components, styles, and design patterns.
@@ -53,12 +53,12 @@
 -	Library for measuring essential web performance metrics, such as First Contentful Paint (FCP) and Largest Contentful Paint (LCP), providing insights into user experience.
 
 
+<br><br><br>
 
 
 
 
-
-###B)	MIDDLEWARE FUNCTION ALONG WITH DESCRIPTION
+### B)	MIDDLEWARE FUNCTION ALONG WITH DESCRIPTION<br><br>
 
 **1.	useNavigate**
 -	A hook provided by React Router for programmatic navigation in React applications. It returns a navigate function that can be used to navigate to different routes within the application, typically in response to user actions or other events.
@@ -76,24 +76,24 @@
 -	A React Redux Hook that allows components to extract data from the Redux store state. It accepts a selector function as an argument, which specifies the part of the state to be accessed. With useSelector, components can subscribe to updates in the Redux store state and re-render whenever the selected data changes, ensuring efficient and reactive UI updates based on the application's state.
 
 
+<br><br><br>
 
 
 
 
-
-###C) APIs USED
+### C) APIs USED<br><br>
 
 1. (https://api.github.com/users/)
 2. (https://api.github.com/users/USERNAME/repos)
 3. (https://api.github.com/repos/palakSingh621/Github_Progress_Dashboard/contributors)
+<br><br><br>
 
 
 
 
 
 
-
-###D)	RATE LIMITS FOR THE REST API
+### D)	RATE LIMITS FOR THE REST API<br><br>
 
 **1.	Primary Rate Limits**
 -	GitHub imposes rate limits on REST API requests to prevent abuse and ensure availability for all users.
@@ -116,6 +116,6 @@
 
 **6.	Getting a Higher Rate Limit**
 -	If your application requires a higher rate limit, consider using authorized GitHub Apps or OAuth apps, especially those associated with GitHub Enterprise Cloud organizations, to benefit from a higher rate limit of 15,000 requests per hour.
-
+<br><br>
 
 By understanding the primary and secondary rate limits, monitoring the rate limit status, and implementing best practices to stay within the limits, we can ensure efficient and uninterrupted usage of the GitHub REST API.
