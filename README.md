@@ -47,7 +47,9 @@
 
 
 <br><br><br>
+# Structure Diagram of Website flow
 
+![GITHUB](https://github.com/palakSingh621/Github_Progress_Dashboard/assets/107800373/13b67a75-ff8a-4656-8760-f399faf97cd6)
 
 
 
