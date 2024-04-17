@@ -7,31 +7,6 @@ import styles from './SearchBar.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData} from '../../../src/feature/githubSlice.js'
 
-
-// import {
-//     Chart as ChartJS,
-//     CategoryScale,
-//     LinearScale,
-//     PointElement,
-//     LineElement,
-//     Title,
-//     Tooltip,
-//     Legend,
-//   } from 'chart.js';
-//   import { Line } from 'react-chartjs-2';
-//   import { faker } from 'faker';
-
-//   ChartJS.register(
-//     CategoryScale,
-//     LinearScale,
-//     PointElement,
-//     LineElement,
-//     Title,
-//     Tooltip,
-//     Legend
-//   );
-
-
 function Overview() {
     
     const [val , setVal] = useState("");
@@ -152,43 +127,9 @@ function Overview() {
             </Row>
         </Space>
 
-        {/* <Space>
-        <CommitChart/>
-        </Space> */}
-
     </div>
 }
 
 
-// function CommitChart(){
-
-//     const options = {
-//         responsive: true,
-//           title: {
-//             display: true,
-//             text: 'Commit History',
-//           },
-//         }
-
-//     const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug","Sept","Oct","Nov","Dec"];
-
-//     const data = {
-//         labels,
-//         datasets: [
-//             {
-//                 label: 'Yearly',
-//                 data: labels.map(() =>faker.datatype.number({ min: 0, max: 1000 })),
-//                 fill: false,
-//                 borderColor: 'rgb(75, 192, 192)',
-//                 tension: 0.1
-//             }
-//         ],
-//     };
-
-//     return (
-//     <Card style={{ width: 500, height: 250 }}>
-//         <Line options={options} data={data} />;
-//     </Card>);
-// }
 
 export default Overview;
