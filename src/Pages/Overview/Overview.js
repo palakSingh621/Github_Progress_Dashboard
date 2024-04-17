@@ -64,14 +64,14 @@ function Overview() {
 
         <Header>
             <form onSubmit={handleSubmit}>
-                <input
+                 <input
                     type="text"
-                    placeholder="Search data..."
+                    placeholder="Type /UserName"
                     className={styles.textbox}
         
                     onChange={(e)=>{setVal(e.target.value)}}
                      />
-                    <button type='submit'>Go</button>
+                    <button style={{height:30, width: 50}} type='submit'><SearchOutlined/></button>
             </form>
 
 
